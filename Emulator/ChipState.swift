@@ -26,6 +26,7 @@ struct ChipState {
     public var downKeys = NSMutableOrderedSet()
 
     public var isAwaitingKey = false
+    public var needsRedraw = false
 
     public var shouldPlaySound: Bool {
         return soundTimer > 0

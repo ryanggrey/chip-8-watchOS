@@ -21,6 +21,15 @@ public class Chip8 {
         self.opExecutor = OpExecutor(cpuHz: cpuHz)
     }
 
+    var needsRedraw: Bool {
+        get {
+            return state.needsRedraw
+        }
+        set {
+            state.needsRedraw = newValue
+        }
+    }
+
     var shouldPlaySound: Bool {
         return state.shouldPlaySound
     }

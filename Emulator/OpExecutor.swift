@@ -345,6 +345,7 @@ struct OpExecutor {
             }
         }
         newState.screen.pixels = newPixels
+        newState.needsRedraw = true
         newState.v[0x0f] = isCollision ? 1 : 0
         newState.pc += 2
 
