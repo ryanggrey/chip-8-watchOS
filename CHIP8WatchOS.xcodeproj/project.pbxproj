@@ -228,7 +228,7 @@
 			);
 			mainGroup = 16B52BE325D349B9007C67A6;
 			packageReferences = (
-				16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */,
+				16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */,
 			);
 			productRefGroup = 16B52BEB25D349B9007C67A6 /* Products */;
 			projectDirPath = "";
@@ -573,12 +573,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */ = {
+		16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ryanggrey/Chip8EmulatorPackage";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.2;
+				version = 0.0.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -586,12 +586,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		16BAB46B25D6E4FB003178F0 /* Chip8Emulator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
+			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */;
 			productName = Chip8Emulator;
 		};
 		16BAB47325D6E6ED003178F0 /* Chip8Emulator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
+			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */;
 			productName = Chip8Emulator;
 		};
 /* End XCSwiftPackageProductDependency section */
