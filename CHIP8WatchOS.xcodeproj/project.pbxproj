@@ -575,10 +575,10 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator/";
+			repositoryURL = "https://github.com/ryanggrey/Chip8EmulatorPackage";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 0.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

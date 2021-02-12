@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "Chip8Emulator",
-        "repositoryURL": "/Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator/",
+        "repositoryURL": "https://github.com/ryanggrey/Chip8EmulatorPackage",
         "state": {
-          "branch": "main",
-          "revision": "98c89d3266da49b7af7e7211afda0a23ea8b6d57",
-          "version": null
+          "branch": null,
+          "revision": "b6d3b0109cdeef7c25214afdc4cb140ce5a4a984",
+          "version": "0.0.2"
         }
       }
     ]
