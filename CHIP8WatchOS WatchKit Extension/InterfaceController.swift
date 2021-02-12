@@ -8,6 +8,7 @@
 import WatchKit
 import Foundation
 import SpriteKit
+import Chip8Emulator
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var interfaceScene: WKInterfaceSKScene!
