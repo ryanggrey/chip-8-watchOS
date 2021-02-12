@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Chip8Emulator",
+        "repositoryURL": "/Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator/",
+        "state": {
+          "branch": "main",
+          "revision": "7ff71da279981cdab2341b16dfeb6503ded28df2",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

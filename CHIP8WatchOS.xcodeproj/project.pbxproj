@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,18 +15,7 @@
 		16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C0425D349BC007C67A6 /* ExtensionDelegate.swift */; };
 		16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C0625D349BC007C67A6 /* ComplicationController.swift */; };
 		16B52C0925D349BD007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52C0825D349BD007C67A6 /* Assets.xcassets */; };
-		16B52C2B25D34ACC007C67A6 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C1F25D34ACC007C67A6 /* Size.swift */; };
-		16B52C2C25D34ACC007C67A6 /* Chip8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2025D34ACC007C67A6 /* Chip8.swift */; };
-		16B52C2D25D34ACC007C67A6 /* Byte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2125D34ACC007C67A6 /* Byte.swift */; };
-		16B52C2E25D34ACC007C67A6 /* ChipState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2225D34ACC007C67A6 /* ChipState.swift */; };
-		16B52C2F25D34ACC007C67A6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2325D34ACC007C67A6 /* Font.swift */; };
-		16B52C3125D34ACC007C67A6 /* Chip8Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2525D34ACC007C67A6 /* Chip8Screen.swift */; };
-		16B52C3225D34ACC007C67A6 /* Chip8KeyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2625D34ACC007C67A6 /* Chip8KeyCode.swift */; };
-		16B52C3325D34ACC007C67A6 /* OpExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2725D34ACC007C67A6 /* OpExecutor.swift */; };
-		16B52C3425D34ACC007C67A6 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2825D34ACC007C67A6 /* Word.swift */; };
-		16B52C5B25D48C7A007C67A6 /* RomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C5A25D48C7A007C67A6 /* RomLoader.swift */; };
 		16BAB45C25D67526003178F0 /* RomName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB45B25D67525003178F0 /* RomName.swift */; };
-		16BAB46425D675E6003178F0 /* PathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB46325D675E6003178F0 /* PathFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,18 +72,7 @@
 		16B52C0625D349BC007C67A6 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		16B52C0825D349BD007C67A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16B52C0A25D349BD007C67A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16B52C1F25D34ACC007C67A6 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
-		16B52C2025D34ACC007C67A6 /* Chip8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chip8.swift; sourceTree = "<group>"; };
-		16B52C2125D34ACC007C67A6 /* Byte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Byte.swift; sourceTree = "<group>"; };
-		16B52C2225D34ACC007C67A6 /* ChipState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipState.swift; sourceTree = "<group>"; };
-		16B52C2325D34ACC007C67A6 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		16B52C2525D34ACC007C67A6 /* Chip8Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chip8Screen.swift; sourceTree = "<group>"; };
-		16B52C2625D34ACC007C67A6 /* Chip8KeyCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chip8KeyCode.swift; sourceTree = "<group>"; };
-		16B52C2725D34ACC007C67A6 /* OpExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpExecutor.swift; sourceTree = "<group>"; };
-		16B52C2825D34ACC007C67A6 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
-		16B52C5A25D48C7A007C67A6 /* RomLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomLoader.swift; sourceTree = "<group>"; };
 		16BAB45B25D67525003178F0 /* RomName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomName.swift; sourceTree = "<group>"; };
-		16BAB46325D675E6003178F0 /* PathFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +89,6 @@
 		16B52BE325D349B9007C67A6 = {
 			isa = PBXGroup;
 			children = (
-				16B52C1B25D34A52007C67A6 /* Emulator */,
 				16B52BF225D349B9007C67A6 /* CHIP8WatchOS WatchKit App */,
 				16B52C0125D349BC007C67A6 /* CHIP8WatchOS WatchKit Extension */,
 				16B52BEB25D349B9007C67A6 /* Products */,
@@ -151,24 +128,6 @@
 			path = "CHIP8WatchOS WatchKit Extension";
 			sourceTree = "<group>";
 		};
-		16B52C1B25D34A52007C67A6 /* Emulator */ = {
-			isa = PBXGroup;
-			children = (
-				16B52C5A25D48C7A007C67A6 /* RomLoader.swift */,
-				16B52C2125D34ACC007C67A6 /* Byte.swift */,
-				16B52C2025D34ACC007C67A6 /* Chip8.swift */,
-				16B52C2625D34ACC007C67A6 /* Chip8KeyCode.swift */,
-				16B52C2525D34ACC007C67A6 /* Chip8Screen.swift */,
-				16B52C2225D34ACC007C67A6 /* ChipState.swift */,
-				16B52C2325D34ACC007C67A6 /* Font.swift */,
-				16B52C2725D34ACC007C67A6 /* OpExecutor.swift */,
-				16B52C1F25D34ACC007C67A6 /* Size.swift */,
-				16B52C2825D34ACC007C67A6 /* Word.swift */,
-				16BAB46325D675E6003178F0 /* PathFactory.swift */,
-			);
-			path = Emulator;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,6 +144,9 @@
 				16B52BF125D349B9007C67A6 /* PBXTargetDependency */,
 			);
 			name = CHIP8WatchOS;
+			packageProductDependencies = (
+				16BAB46B25D6E4FB003178F0 /* Chip8Emulator */,
+			);
 			productName = CHIP8WatchOS;
 			productReference = 16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
@@ -252,6 +214,9 @@
 				Base,
 			);
 			mainGroup = 16B52BE325D349B9007C67A6;
+			packageReferences = (
+				16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */,
+			);
 			productRefGroup = 16B52BEB25D349B9007C67A6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -295,20 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B52C3125D34ACC007C67A6 /* Chip8Screen.swift in Sources */,
-				16B52C5B25D48C7A007C67A6 /* RomLoader.swift in Sources */,
-				16B52C3425D34ACC007C67A6 /* Word.swift in Sources */,
-				16B52C3325D34ACC007C67A6 /* OpExecutor.swift in Sources */,
-				16B52C2D25D34ACC007C67A6 /* Byte.swift in Sources */,
-				16B52C2F25D34ACC007C67A6 /* Font.swift in Sources */,
 				16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */,
 				16BAB45C25D67526003178F0 /* RomName.swift in Sources */,
-				16BAB46425D675E6003178F0 /* PathFactory.swift in Sources */,
-				16B52C2E25D34ACC007C67A6 /* ChipState.swift in Sources */,
-				16B52C2C25D34ACC007C67A6 /* Chip8.swift in Sources */,
 				16B52C0325D349BC007C67A6 /* InterfaceController.swift in Sources */,
-				16B52C3225D34ACC007C67A6 /* Chip8KeyCode.swift in Sources */,
-				16B52C2B25D34ACC007C67A6 /* Size.swift in Sources */,
 				16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +558,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator/";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		16BAB46B25D6E4FB003178F0 /* Chip8Emulator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
+			productName = Chip8Emulator;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 16B52BE425D349B9007C67A6 /* Project object */;
 }
