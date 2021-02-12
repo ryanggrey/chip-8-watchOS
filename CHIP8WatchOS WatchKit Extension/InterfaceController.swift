@@ -11,11 +11,26 @@ import SpriteKit
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var interfaceScene: WKInterfaceSKScene!
+    private var chip8: Chip8!
     private let scene = SKScene()
     private let bitmapNode = SKShapeNode()
+    private var cpuTimer: Timer?
     private let cpuHz: TimeInterval = 1/600
-    private var chip8: Chip8!
-    private var timer: Timer?
+    private var displayTimer: Timer?
+    private let displayHz: TimeInterval = 1/30
+
+    override func awake(withContext context: Any?) {
+        setupScene()
+        let rom = [Byte](NSDataAsset(name: RomName.spaceInvaders)!.data)
+        let ram = RomLoader.loadRam(from: rom)
+        runEmulator(with: ram)
+    }
+
+    override func didAppear() {
+        super.didAppear()
+        crownSequencer.delegate = self
+        crownSequencer.focus()
+    }
 
     private func setupScene() {
         let width = self.contentFrame.size.width
@@ -26,7 +41,6 @@ class InterfaceController: WKInterfaceController {
         scene.size.height = height
         scene.backgroundColor = .black
         scene.scaleMode = .aspectFit
-        //interfaceScene.preferredFramesPerSecond = 10
         interfaceScene.presentScene(scene)
 
         bitmapNode.strokeColor = .white
@@ -34,82 +48,118 @@ class InterfaceController: WKInterfaceController {
         bitmapNode.lineWidth = 1
         bitmapNode.lineCap = .round
         bitmapNode.position = CGPoint.zero
+        
         scene.addChild(bitmapNode)
     }
 
     private func runEmulator(with rom: [Byte]) {
-        var chipState = ChipState()
-        chipState.ram = rom
+        setupChip8(with: rom)
+        startCpu()
+        startRendering()
+    }
 
-        self.chip8 = Chip8(
-            state: chipState,
-            cpuHz: cpuHz
-        )
-        timer = Timer.scheduledTimer(
+    private func startCpu() {
+        cpuTimer = Timer.scheduledTimer(
             timeInterval: cpuHz,
             target: self,
-            selector: #selector(self.timerFired),
+            selector: #selector(self.cpuTimerFired),
+            userInfo: nil,
+            repeats: true
+        )
+        RunLoop.current.add(cpuTimer!, forMode: .common)
+    }
+
+    @objc private func cpuTimerFired() {
+        chip8.cycle()
+        // TODO: sounds
+    }
+
+    private func startRendering() {
+        displayTimer = Timer.scheduledTimer(
+            timeInterval: displayHz,
+            target: self,
+            selector: #selector(self.displayTimerFired),
             userInfo: nil,
             repeats: true
         )
     }
 
-    @objc private func timerFired() {
-        chip8.cycle()
-        render(screen: chip8.screen)
-        // TODO: sounds
+    @objc private func displayTimerFired() {
+        if chip8.needsRedraw {
+            render(screen: chip8.screen)
+            chip8.needsRedraw = false
+        }
     }
 
-    private func createPath(from screen: Chip8Screen) -> CGPath {
-        let path = CGMutablePath()
-
-        let viewWidth = scene.size.width
-        let viewHeight = scene.size.height
-        let pixelWidth = round(viewWidth / CGFloat(screen.size.width))
-        let pixelHeight = round(viewHeight / CGFloat(screen.size.height))
-        let pixelSize = CGSize(width: pixelWidth, height: pixelHeight)
-
-        let xRange = 0..<screen.size.width
-        let yRange = 0..<screen.size.height
-        for x in xRange {
-            for y in yRange {
-                let pixelAddress = y * screen.size.width + x
-                guard screen.pixels[pixelAddress] == 1 else {
-                    // skip if we're not meant to draw pixel
-                    continue
-                }
-
-                let xCoord = CGFloat(x) * pixelSize.width
-                let yCoord = viewHeight - (CGFloat(y) * pixelSize.height)
-                let origin = CGPoint(x: xCoord, y: yCoord)
-                let frame = CGRect(origin: origin, size: pixelSize)
-                path.addRect(frame)
-            }
-        }
-        return path
+    private func setupChip8(with rom: [Byte]) {
+        var chipState = ChipState()
+        chipState.ram = rom
+        self.chip8 = Chip8(
+            state: chipState,
+            cpuHz: cpuHz
+        )
     }
 
     private func render(screen: Chip8Screen) {
-        let path = createPath(from: screen)
+        let path = PathFactory.from(
+            screen: screen,
+            containerSize: scene.size
+        )
         bitmapNode.path = path
     }
+}
 
-    private let spaceInvaders = "Space Invaders [David Winter]"
-    private let maze = "Maze [David Winter, 199x]"
-    private let pong = "Pong (1 player)"
-    private let breakout = "Breakout [Carmelo Cortez, 1979]"
+// Handle User Gestures
+extension InterfaceController: WKCrownDelegate {
+    @IBAction func didTap(_ sender: Any) {
+        /*
+         watchOS gestures are discrete/atomic and there appears to
+         be no way be notified of imtermediary gesture state such
+         as touchDown, touchUp etc. This means we need to simulate
+         the touchUp event so that Chip8 doesn't end up thinking a
+         key has been pressed and never released
+         */
 
-    override func awake(withContext context: Any?) {
-        setupScene()
-        let rom = [Byte](NSDataAsset(name: "Maze [David Winter, 199x]")!.data)
-        let ram = RomLoader.loadRam(from: rom)
-        runEmulator(with: ram)
-    }
-    
-    override func willActivate() {
-    }
-    
-    override func didDeactivate() {
+        chip8.handleKeyDown(key: Chip8KeyCode.five.rawValue)
+        Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(self.didEndTap),
+            userInfo: nil,
+            repeats: false
+        )
     }
 
+    @objc private func didEndTap() {
+        chip8.handleKeyUp(key: Chip8KeyCode.five.rawValue)
+    }
+
+    func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
+        /*
+         rotationalDelta should give us - sign for down direction
+         and + sign for up direction. However +0 appears to happen
+         as the initial value for for _both_ up and down crown
+         directions. This is why we're avoiding 0 in the below
+         `if/elseif`.
+         */
+
+        if rotationalDelta < 0 {
+            // ensure previous direction released
+            chip8.handleKeyUp(key: Chip8KeyCode.six.rawValue)
+
+            // activate new direction
+            chip8.handleKeyDown(key: Chip8KeyCode.four.rawValue)
+        } else if rotationalDelta > 0 {
+            // ensure previous direction released
+            chip8.handleKeyUp(key: Chip8KeyCode.four.rawValue)
+
+            // activate new direction
+            chip8.handleKeyDown(key: Chip8KeyCode.six.rawValue)
+        }
+    }
+
+    func crownDidBecomeIdle(_ crownSequencer: WKCrownSequencer?) {
+        chip8.handleKeyUp(key: Chip8KeyCode.four.rawValue)
+        chip8.handleKeyUp(key: Chip8KeyCode.six.rawValue)
+    }
 }

@@ -25,6 +25,8 @@
 		16B52C3325D34ACC007C67A6 /* OpExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2725D34ACC007C67A6 /* OpExecutor.swift */; };
 		16B52C3425D34ACC007C67A6 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C2825D34ACC007C67A6 /* Word.swift */; };
 		16B52C5B25D48C7A007C67A6 /* RomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C5A25D48C7A007C67A6 /* RomLoader.swift */; };
+		16BAB45C25D67526003178F0 /* RomName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB45B25D67525003178F0 /* RomName.swift */; };
+		16BAB46425D675E6003178F0 /* PathFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB46325D675E6003178F0 /* PathFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		16B52C2725D34ACC007C67A6 /* OpExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpExecutor.swift; sourceTree = "<group>"; };
 		16B52C2825D34ACC007C67A6 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		16B52C5A25D48C7A007C67A6 /* RomLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomLoader.swift; sourceTree = "<group>"; };
+		16BAB45B25D67525003178F0 /* RomName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomName.swift; sourceTree = "<group>"; };
+		16BAB46325D675E6003178F0 /* PathFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				16B52C0625D349BC007C67A6 /* ComplicationController.swift */,
 				16B52C0825D349BD007C67A6 /* Assets.xcassets */,
 				16B52C0A25D349BD007C67A6 /* Info.plist */,
+				16BAB45B25D67525003178F0 /* RomName.swift */,
 			);
 			path = "CHIP8WatchOS WatchKit Extension";
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				16B52C2725D34ACC007C67A6 /* OpExecutor.swift */,
 				16B52C1F25D34ACC007C67A6 /* Size.swift */,
 				16B52C2825D34ACC007C67A6 /* Word.swift */,
+				16BAB46325D675E6003178F0 /* PathFactory.swift */,
 			);
 			path = Emulator;
 			sourceTree = "<group>";
@@ -296,6 +302,8 @@
 				16B52C2D25D34ACC007C67A6 /* Byte.swift in Sources */,
 				16B52C2F25D34ACC007C67A6 /* Font.swift in Sources */,
 				16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */,
+				16BAB45C25D67526003178F0 /* RomName.swift in Sources */,
+				16BAB46425D675E6003178F0 /* PathFactory.swift in Sources */,
 				16B52C2E25D34ACC007C67A6 /* ChipState.swift in Sources */,
 				16B52C2C25D34ACC007C67A6 /* Chip8.swift in Sources */,
 				16B52C0325D349BC007C67A6 /* InterfaceController.swift in Sources */,
