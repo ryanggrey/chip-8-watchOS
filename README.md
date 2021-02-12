@@ -20,6 +20,7 @@ Based on a [macOS version](https://github.com/ryanggrey/chip-8-macos) which in t
 The ROMs bundled into this project are from https://github.com/dmatlack/chip8
 
 ## Future Work
+- CI
 - Game/rom selection
 - Control schemes per game
 - Shared lib between this and [macOS version](https://github.com/ryanggrey/chip-8-macos)
