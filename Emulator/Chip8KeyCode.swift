@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum Chip8KeyCode: Int {case zero = 0x0
+enum Chip8KeyCode: Int {
+    case zero = 0x0
     case one = 0x1
     case two = 0x2 // up
     case three = 0x3
