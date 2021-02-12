@@ -94,6 +94,11 @@ class InterfaceController: WKInterfaceController {
         bitmapNode.path = path
     }
 
+    private let spaceInvaders = "Space Invaders [David Winter]"
+    private let maze = "Maze [David Winter, 199x]"
+    private let pong = "Pong (1 player)"
+    private let breakout = "Breakout [Carmelo Cortez, 1979]"
+
     override func awake(withContext context: Any?) {
         setupScene()
         let rom = [Byte](NSDataAsset(name: "Maze [David Winter, 199x]")!.data)
