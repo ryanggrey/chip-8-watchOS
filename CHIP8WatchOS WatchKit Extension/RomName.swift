@@ -11,5 +11,5 @@ struct RomName {
     static let spaceInvaders = "Space Invaders [David Winter]"
     static let maze = "Maze [David Winter, 199x]"
     static let pong = "Pong (1 player)"
-    static let breakout = "Breakout [Carmelo Cortez, 1979]"
+    static let breakout = "Breakout (Brix hack) [David Winter, 1997]"
 }
