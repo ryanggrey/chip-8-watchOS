@@ -12,6 +12,7 @@ import Chip8Emulator
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var interfaceScene: WKInterfaceSKScene!
+    @IBOutlet weak var romPicker: WKInterfacePicker!
     private var chip8: Chip8!
     private let scene = SKScene()
     private let bitmapNode = SKShapeNode()
@@ -21,16 +22,45 @@ class InterfaceController: WKInterfaceController {
     private let displayHz: TimeInterval = 1/30
 
     override func awake(withContext context: Any?) {
+        setupPicker()
         setupScene()
-        let rom = [Byte](NSDataAsset(name: RomName.spaceInvaders)!.data)
-        let ram = RomLoader.loadRam(from: rom)
-        runEmulator(with: ram)
     }
 
     override func didAppear() {
         super.didAppear()
         crownSequencer.delegate = self
         crownSequencer.focus()
+    }
+
+    private func setupPicker() {
+        let pickerItems = createPickerItems()
+        romPicker.setItems(pickerItems)
+        romPicker.setSelectedItemIndex(pickerItems.count - 1)
+    }
+
+    @IBAction func pickerDidSelect(_ index: Int) {
+        let pickerItem = createPickerItems()[index]
+        guard let romName = pickerItem.title,
+              let romData = NSDataAsset(name: romName)?.data else { return }
+
+        let rom = [Byte](romData)
+        let ram = RomLoader.loadRam(from: rom)
+        runEmulator(with: ram)
+    }
+
+    private func createPickerItems() -> [WKPickerItem] {
+        return [
+            createPickerItem(with: RomName.breakout),
+            createPickerItem(with: RomName.maze),
+            createPickerItem(with: RomName.pong),
+            createPickerItem(with: RomName.spaceInvaders),
+        ]
+    }
+
+    private func createPickerItem(with title: String) -> WKPickerItem {
+        let item = WKPickerItem()
+        item.title = title
+        return item
     }
 
     private func setupScene() {
@@ -60,6 +90,9 @@ class InterfaceController: WKInterfaceController {
     }
 
     private func startCpu() {
+        cpuTimer?.invalidate()
+        cpuTimer = nil
+
         cpuTimer = Timer.scheduledTimer(
             timeInterval: cpuHz,
             target: self,
@@ -76,6 +109,9 @@ class InterfaceController: WKInterfaceController {
     }
 
     private func startRendering() {
+        displayTimer?.invalidate()
+        displayTimer = nil
+
         displayTimer = Timer.scheduledTimer(
             timeInterval: displayHz,
             target: self,
@@ -113,7 +149,10 @@ class InterfaceController: WKInterfaceController {
 
 // Handle User Gestures
 extension InterfaceController: WKCrownDelegate {
-    @IBAction func didTap(_ sender: Any) {
+    @IBAction func didTapChip8Screen(_ sender: Any) {
+        // ensure romPicker is no longer focus and that crown controls game
+        crownSequencer.focus()
+
         /*
          watchOS gestures are discrete/atomic and there appears to
          be no way be notified of imtermediary gesture state such

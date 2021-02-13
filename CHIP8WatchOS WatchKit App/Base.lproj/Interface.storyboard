@@ -11,18 +11,28 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="CHIP8WatchOS_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <spriteKitScene alignment="left" id="ZVH-qa-ekM">
-                            <gestureRecognizers>
-                                <tapGestureRecognizer id="tiq-V5-C1S">
+                        <group width="1" alignment="left" layout="vertical" id="V0C-01-Sa0">
+                            <items>
+                                <spriteKitScene alignment="left" id="ZVH-qa-ekM">
+                                    <gestureRecognizers>
+                                        <tapGestureRecognizer id="tiq-V5-C1S">
+                                            <connections>
+                                                <action selector="didTapChip8Screen:" destination="AgC-eL-Hgc" id="tW9-Xd-r7e"/>
+                                            </connections>
+                                        </tapGestureRecognizer>
+                                    </gestureRecognizers>
+                                </spriteKitScene>
+                                <picker width="1" height="0.25" alignment="left" focusStyle="stack" id="0Ry-5L-az6">
                                     <connections>
-                                        <action selector="didTap:" destination="AgC-eL-Hgc" id="tW9-Xd-r7e"/>
+                                        <action selector="pickerDidSelect:" destination="AgC-eL-Hgc" id="kUt-vW-3IS"/>
                                     </connections>
-                                </tapGestureRecognizer>
-                            </gestureRecognizers>
-                        </spriteKitScene>
+                                </picker>
+                            </items>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="interfaceScene" destination="ZVH-qa-ekM" id="g0M-tu-ceT"/>
+                        <outlet property="romPicker" destination="0Ry-5L-az6" id="WyY-kd-BMr"/>
                     </connections>
                 </controller>
             </objects>
