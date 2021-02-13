@@ -578,7 +578,7 @@
 			repositoryURL = "https://github.com/ryanggrey/Chip8EmulatorPackage";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.6;
+				version = 0.0.7;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

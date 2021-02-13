@@ -104,7 +104,8 @@ class InterfaceController: WKInterfaceController {
     private func render(screen: Chip8Screen) {
         let path = PathFactory.from(
             screen: screen,
-            containerSize: scene.size
+            containerSize: scene.size,
+            isYReversed: true
         )
         bitmapNode.path = path
     }
