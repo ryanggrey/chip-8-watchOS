@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/ryanggrey/Chip8EmulatorPackage",
         "state": {
           "branch": null,
-          "revision": "a4cd95233a245523564882c4cec23fda39a2dfd3",
-          "version": "0.0.7"
+          "revision": "bceee03b0792a429a7687e564558bbd3c78ed358",
+          "version": "0.0.8"
         }
       }
     ]
