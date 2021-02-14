@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc" pageOrientation="vertical">
     <device id="watch38"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -9,20 +9,20 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="CHIP8WatchOS_WatchKit_App" customModuleProvider="target">
+                <controller contentMode="scaleAspectFit" fullBounds="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="CHIP8WatchOS_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" layout="vertical" id="V0C-01-Sa0">
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFit" layout="vertical" radius="0.0" id="V0C-01-Sa0">
                             <items>
-                                <spriteKitScene alignment="left" id="ZVH-qa-ekM">
+                                <imageView width="1" height="0.75" alignment="center" contentMode="scaleAspectFit" id="0lj-wu-yWA">
                                     <gestureRecognizers>
-                                        <tapGestureRecognizer id="tiq-V5-C1S">
+                                        <tapGestureRecognizer id="761-m9-hbc">
                                             <connections>
-                                                <action selector="didTapChip8Screen:" destination="AgC-eL-Hgc" id="tW9-Xd-r7e"/>
+                                                <action selector="didTapChip8Screen:" destination="AgC-eL-Hgc" id="SvE-C6-D2r"/>
                                             </connections>
                                         </tapGestureRecognizer>
                                     </gestureRecognizers>
-                                </spriteKitScene>
-                                <picker width="1" height="0.25" alignment="left" focusStyle="stack" id="0Ry-5L-az6">
+                                </imageView>
+                                <picker width="1" height="0.25" alignment="center" focusStyle="stack" id="0Ry-5L-az6">
                                     <connections>
                                         <action selector="pickerDidSelect:" destination="AgC-eL-Hgc" id="kUt-vW-3IS"/>
                                     </connections>
@@ -31,7 +31,7 @@
                         </group>
                     </items>
                     <connections>
-                        <outlet property="interfaceScene" destination="ZVH-qa-ekM" id="g0M-tu-ceT"/>
+                        <outlet property="chip8Image" destination="0lj-wu-yWA" id="vI1-r6-DDe"/>
                         <outlet property="romPicker" destination="0Ry-5L-az6" id="WyY-kd-BMr"/>
                     </connections>
                 </controller>

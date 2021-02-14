@@ -11,31 +11,37 @@ import SpriteKit
 import Chip8Emulator
 
 class InterfaceController: WKInterfaceController {
-    @IBOutlet weak var interfaceScene: WKInterfaceSKScene!
+    @IBOutlet weak var chip8Image: WKInterfaceImage!
     @IBOutlet weak var romPicker: WKInterfacePicker!
     private var chip8: Chip8!
-    private let scene = SKScene()
-    private let bitmapNode = SKShapeNode()
     private var cpuTimer: Timer?
     private let cpuHz: TimeInterval = 1/600
     private var displayTimer: Timer?
     private let displayHz: TimeInterval = 1/30
 
-    override func awake(withContext context: Any?) {
-        setupPicker()
-        setupScene()
+    private var chip8ImageSize: CGSize {
+        let width = contentFrame.size.width
+        let height = contentFrame.size.width / 2
+        return CGSize(width: width, height: height)
     }
 
     override func didAppear() {
         super.didAppear()
         crownSequencer.delegate = self
         crownSequencer.focus()
+        setupRenderer()
+        setupPicker()
     }
 
     private func setupPicker() {
         let pickerItems = createPickerItems()
         romPicker.setItems(pickerItems)
         romPicker.setSelectedItemIndex(pickerItems.count - 1)
+    }
+
+    private func setupRenderer() {
+        chip8Image.setWidth(chip8ImageSize.width)
+        chip8Image.setHeight(chip8ImageSize.height)
     }
 
     @IBAction func pickerDidSelect(_ index: Int) {
@@ -61,26 +67,6 @@ class InterfaceController: WKInterfaceController {
         let item = WKPickerItem()
         item.title = title
         return item
-    }
-
-    private func setupScene() {
-        let width = self.contentFrame.size.width
-        let height = width / 2
-
-        scene.shouldRasterize = true
-        scene.size.width = width
-        scene.size.height = height
-        scene.backgroundColor = .black
-        scene.scaleMode = .aspectFit
-        interfaceScene.presentScene(scene)
-
-        bitmapNode.strokeColor = .white
-        bitmapNode.fillColor = .white
-        bitmapNode.lineWidth = 1
-        bitmapNode.lineCap = .round
-        bitmapNode.position = CGPoint.zero
-        
-        scene.addChild(bitmapNode)
     }
 
     private func runEmulator(with rom: [Byte]) {
@@ -140,10 +126,41 @@ class InterfaceController: WKInterfaceController {
     private func render(screen: Chip8Screen) {
         let path = PathFactory.from(
             screen: screen,
-            containerSize: scene.size,
-            isYReversed: true
+            containerSize: chip8ImageSize,
+            isYReversed: false
         )
-        bitmapNode.path = path
+        render(path: path)
+    }
+
+    private func render(path: CGPath) {
+        guard let context = createPixelContext(color: .white) else { return }
+        context.addPath(path)
+        context.fillPath()
+
+        guard let cgImage = context.makeImage() else { return }
+        let image = UIImage(cgImage: cgImage)
+        chip8Image.setImage(image)
+    }
+
+
+    private func createPixelContext(color: UIColor) -> CGContext? {
+        // TODO: figure out why we need padding here
+        var size = chip8ImageSize
+        size.width += 10
+        size.height += 10
+        
+        UIGraphicsBeginImageContext(size)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        UIGraphicsEndImageContext()
+
+        context.setShouldAntialias(true)
+        context.setLineWidth(1.0)
+        context.setLineJoin(.bevel)
+        context.setLineCap(.square)
+        context.setStrokeColor(color.cgColor)
+        context.setFillColor(color.cgColor)
+
+        return context
     }
 }
 
