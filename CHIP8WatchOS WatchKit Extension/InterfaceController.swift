@@ -142,18 +142,12 @@ class InterfaceController: WKInterfaceController {
         chip8Image.setImage(image)
     }
 
-
     private func createPixelContext(color: UIColor) -> CGContext? {
-        // TODO: figure out why we need padding here
-        var size = chip8ImageSize
-        size.width += 10
-        size.height += 10
-        
-        UIGraphicsBeginImageContext(size)
+        UIGraphicsBeginImageContext(chip8ImageSize)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         UIGraphicsEndImageContext()
 
-        context.setShouldAntialias(true)
+        context.setShouldAntialias(false)
         context.setLineWidth(1.0)
         context.setLineJoin(.bevel)
         context.setLineCap(.square)

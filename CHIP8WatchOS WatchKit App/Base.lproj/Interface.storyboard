@@ -13,7 +13,7 @@
                     <items>
                         <group width="1" height="1" alignment="center" verticalAlignment="center" contentMode="scaleAspectFit" layout="vertical" radius="0.0" id="V0C-01-Sa0">
                             <items>
-                                <imageView width="1" height="0.75" alignment="center" contentMode="scaleAspectFit" id="0lj-wu-yWA">
+                                <imageView width="1" height="1" alignment="center" contentMode="scaleAspectFit" id="0lj-wu-yWA">
                                     <gestureRecognizers>
                                         <tapGestureRecognizer id="761-m9-hbc">
                                             <connections>
