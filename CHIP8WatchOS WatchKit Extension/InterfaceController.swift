@@ -18,6 +18,14 @@ class InterfaceController: WKInterfaceController {
     private let cpuHz: TimeInterval = 1/600
     private var displayTimer: Timer?
     private let displayHz: TimeInterval = 1/30
+    private var activeRomConfiguration: RomConfiguration?
+
+    private let romConfigurations = [
+        RomConfiguration(romName: RomName.breakout, mapping: KeyMapping.breakout),
+        RomConfiguration(romName: RomName.maze, mapping: KeyMapping.invaders),
+        RomConfiguration(romName: RomName.pong, mapping: KeyMapping.pong),
+        RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.invaders)
+    ]
 
     private var chip8ImageSize: CGSize {
         let width = contentFrame.size.width
@@ -34,9 +42,8 @@ class InterfaceController: WKInterfaceController {
     }
 
     private func setupPicker() {
-        let pickerItems = createPickerItems()
-        romPicker.setItems(pickerItems)
-        romPicker.setSelectedItemIndex(pickerItems.count - 1)
+        romPicker.setItems(self.pickerItems)
+        romPicker.setSelectedItemIndex(self.pickerItems.count - 1)
     }
 
     private func setupRenderer() {
@@ -45,8 +52,8 @@ class InterfaceController: WKInterfaceController {
     }
 
     @IBAction func pickerDidSelect(_ index: Int) {
-        let pickerItem = createPickerItems()[index]
-        guard let romName = pickerItem.title,
+        activeRomConfiguration = self.romConfigurations[index]
+        guard let romName = activeRomConfiguration?.romName,
               let romData = NSDataAsset(name: romName)?.data else { return }
 
         let rom = [Byte](romData)
@@ -54,13 +61,8 @@ class InterfaceController: WKInterfaceController {
         runEmulator(with: ram)
     }
 
-    private func createPickerItems() -> [WKPickerItem] {
-        return [
-            createPickerItem(with: RomName.breakout),
-            createPickerItem(with: RomName.maze),
-            createPickerItem(with: RomName.pong),
-            createPickerItem(with: RomName.spaceInvaders),
-        ]
+    private var pickerItems: [WKPickerItem] {
+        return romConfigurations.map { createPickerItem(with: $0.romName) }
     }
 
     private func createPickerItem(with title: String) -> WKPickerItem {
@@ -161,8 +163,13 @@ class InterfaceController: WKInterfaceController {
 // Handle User Gestures
 extension InterfaceController: WKCrownDelegate {
     @IBAction func didTapChip8Screen(_ sender: Any) {
+        guard let keyMapping = activeRomConfiguration?.mapping,
+              let chip8KeyCode = keyMapping[.screenTap]?.rawValue else { return }
+
         // ensure romPicker is no longer focus and that crown controls game
         crownSequencer.focus()
+
+        chip8.handleKeyDown(key: chip8KeyCode)
 
         /*
          watchOS gestures are discrete/atomic and there appears to
@@ -171,8 +178,6 @@ extension InterfaceController: WKCrownDelegate {
          the touchUp event so that Chip8 doesn't end up thinking a
          key has been pressed and never released
          */
-
-        chip8.handleKeyDown(key: Chip8KeyCode.five.rawValue)
         Timer.scheduledTimer(
             timeInterval: 0.1,
             target: self,
@@ -183,10 +188,17 @@ extension InterfaceController: WKCrownDelegate {
     }
 
     @objc private func didEndTap() {
-        chip8.handleKeyUp(key: Chip8KeyCode.five.rawValue)
+        guard let keyMapping = activeRomConfiguration?.mapping,
+              let chip8KeyCode = keyMapping[.screenTap]?.rawValue else { return }
+
+        chip8.handleKeyUp(key: chip8KeyCode)
     }
 
     func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
+        guard let keyMapping = activeRomConfiguration?.mapping,
+              let chip8CodeForCrownUp = keyMapping[.crownUp]?.rawValue,
+              let chip8CodeForCrownDown = keyMapping[.crownDown]?.rawValue else { return }
+
         /*
          rotationalDelta should give us - sign for down direction
          and + sign for up direction. However +0 appears to happen
@@ -197,21 +209,25 @@ extension InterfaceController: WKCrownDelegate {
 
         if rotationalDelta < 0 {
             // ensure previous direction released
-            chip8.handleKeyUp(key: Chip8KeyCode.six.rawValue)
+            chip8.handleKeyUp(key: chip8CodeForCrownUp)
 
             // activate new direction
-            chip8.handleKeyDown(key: Chip8KeyCode.four.rawValue)
+            chip8.handleKeyDown(key: chip8CodeForCrownDown)
         } else if rotationalDelta > 0 {
             // ensure previous direction released
-            chip8.handleKeyUp(key: Chip8KeyCode.four.rawValue)
+            chip8.handleKeyUp(key: chip8CodeForCrownDown)
 
             // activate new direction
-            chip8.handleKeyDown(key: Chip8KeyCode.six.rawValue)
+            chip8.handleKeyDown(key: chip8CodeForCrownUp)
         }
     }
 
     func crownDidBecomeIdle(_ crownSequencer: WKCrownSequencer?) {
-        chip8.handleKeyUp(key: Chip8KeyCode.four.rawValue)
-        chip8.handleKeyUp(key: Chip8KeyCode.six.rawValue)
+        guard let keyMapping = activeRomConfiguration?.mapping,
+              let chip8CodeForCrownUp = keyMapping[.crownUp]?.rawValue,
+              let chip8CodeForCrownDown = keyMapping[.crownDown]?.rawValue else { return }
+
+        chip8.handleKeyUp(key: chip8CodeForCrownUp)
+        chip8.handleKeyUp(key: chip8CodeForCrownDown)
     }
 }

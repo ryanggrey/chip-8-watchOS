@@ -17,6 +17,9 @@
 		16B52C0925D349BD007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52C0825D349BD007C67A6 /* Assets.xcassets */; };
 		16BAB45C25D67526003178F0 /* RomName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB45B25D67525003178F0 /* RomName.swift */; };
 		16BAB47425D6E6ED003178F0 /* Chip8Emulator in Frameworks */ = {isa = PBXBuildFile; productRef = 16BAB47325D6E6ED003178F0 /* Chip8Emulator */; };
+		16BAB4CF25D9DF36003178F0 /* KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4CE25D9DF36003178F0 /* KeyMapping.swift */; };
+		16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */; };
+		16BAB4DE25D9E28A003178F0 /* RomConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4DD25D9E28A003178F0 /* RomConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		16B52C0825D349BD007C67A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16B52C0A25D349BD007C67A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16BAB45B25D67525003178F0 /* RomName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomName.swift; sourceTree = "<group>"; };
+		16BAB4CE25D9DF36003178F0 /* KeyMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyMapping.swift; sourceTree = "<group>"; };
+		16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInputCode.swift; sourceTree = "<group>"; };
+		16BAB4DD25D9E28A003178F0 /* RomConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,9 @@
 				16B52C0825D349BD007C67A6 /* Assets.xcassets */,
 				16B52C0A25D349BD007C67A6 /* Info.plist */,
 				16BAB45B25D67525003178F0 /* RomName.swift */,
+				16BAB4CE25D9DF36003178F0 /* KeyMapping.swift */,
+				16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */,
+				16BAB4DD25D9E28A003178F0 /* RomConfiguration.swift */,
 			);
 			path = "CHIP8WatchOS WatchKit Extension";
 			sourceTree = "<group>";
@@ -276,7 +285,10 @@
 				16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */,
 				16BAB45C25D67526003178F0 /* RomName.swift in Sources */,
 				16B52C0325D349BC007C67A6 /* InterfaceController.swift in Sources */,
+				16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */,
+				16BAB4CF25D9DF36003178F0 /* KeyMapping.swift in Sources */,
 				16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */,
+				16BAB4DE25D9E28A003178F0 /* RomConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
