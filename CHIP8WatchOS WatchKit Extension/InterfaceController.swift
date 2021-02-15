@@ -102,7 +102,10 @@ class InterfaceController: WKInterfaceController {
 
     @objc private func cpuTimerFired() {
         chip8.cycle()
-        // TODO: sounds
+        if chip8.shouldPlaySound {
+            // TODO: sounds
+            WKInterfaceDevice.current().play(.failure)
+        }
     }
 
     private func startRendering() {
