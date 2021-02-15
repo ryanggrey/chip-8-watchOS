@@ -18,25 +18,51 @@ typealias KeyMapping = [WatchInputCode : Chip8KeyCode]
  */
 
 extension KeyMapping {
-    static var invaders: KeyMapping {
-        return [
-            .screenTap : .five,
-            .crownDown : .four,
-            .crownUp : .six
-        ]
-    }
+    static let airplane: KeyMapping = [
+        .screenTap : .eight
+    ]
 
-    static var breakout: KeyMapping {
-        return [
-            .crownDown : .four,
-            .crownUp : .six
-        ]
-    }
+    static let astroDodge: KeyMapping = [
+        .screenTap : .five,
+        .crownDown : .four,
+        .crownUp : .six
+    ]
 
-    static var pong: KeyMapping {
-        return [
-            .crownDown : .four,
-            .crownUp : .one
-        ]
-    }
+    static let breakout: KeyMapping = [
+        .crownDown : .four,
+        .crownUp : .six
+    ]
+
+    static let filter: KeyMapping = Self.breakout
+
+    static let landing: KeyMapping = [
+        .screenTap : .eight
+    ]
+
+    static let lunarLanding: KeyMapping = [
+        .screenTap : .two,
+        .crownDown : .four,
+        .crownUp : .six
+    ]
+
+    static let missile: KeyMapping = [
+        .screenTap : .eight
+    ]
+
+    static let none: KeyMapping = [:]
+
+    static let pong: KeyMapping = [
+        .crownDown : .four,
+        .crownUp : .one
+    ]
+
+    static let rocket: KeyMapping = [
+        .screenTap : .f
+    ]
+
+    static let spaceInvaders: KeyMapping = [
+        .screenTap : .five,
+        .crownDown : .four,
+        .crownUp : .six
+    ]
 }

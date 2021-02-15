@@ -21,10 +21,17 @@ class InterfaceController: WKInterfaceController {
     private var activeRomConfiguration: RomConfiguration?
 
     private let romConfigurations = [
+        RomConfiguration(romName: RomName.airplane, mapping: KeyMapping.airplane),
+        RomConfiguration(romName: RomName.astroDodge, mapping: KeyMapping.astroDodge),
         RomConfiguration(romName: RomName.breakout, mapping: KeyMapping.breakout),
-        RomConfiguration(romName: RomName.maze, mapping: KeyMapping.invaders),
+        RomConfiguration(romName: RomName.filter, mapping: KeyMapping.filter),
+        RomConfiguration(romName: RomName.landing, mapping: KeyMapping.landing),
+        RomConfiguration(romName: RomName.lunarLander, mapping: KeyMapping.lunarLanding),
+        RomConfiguration(romName: RomName.maze, mapping: KeyMapping.none),
+        RomConfiguration(romName: RomName.missile, mapping: KeyMapping.missile),
         RomConfiguration(romName: RomName.pong, mapping: KeyMapping.pong),
-        RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.invaders)
+        RomConfiguration(romName: RomName.rocket, mapping: KeyMapping.rocket),
+        RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.spaceInvaders)
     ]
 
     private var chip8ImageSize: CGSize {
