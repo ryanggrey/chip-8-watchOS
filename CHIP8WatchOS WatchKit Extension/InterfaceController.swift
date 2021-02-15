@@ -31,7 +31,8 @@ class InterfaceController: WKInterfaceController {
         RomConfiguration(romName: RomName.missile, mapping: KeyMapping.missile),
         RomConfiguration(romName: RomName.pong, mapping: KeyMapping.pong),
         RomConfiguration(romName: RomName.rocket, mapping: KeyMapping.rocket),
-        RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.spaceInvaders)
+        RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.spaceInvaders),
+        RomConfiguration(romName: RomName.tetris, mapping: KeyMapping.tetris)
     ]
 
     private var chip8ImageSize: CGSize {
@@ -169,7 +170,7 @@ class InterfaceController: WKInterfaceController {
 
 // Handle User Gestures
 extension InterfaceController: WKCrownDelegate {
-    @IBAction func didTapChip8Screen(_ sender: Any) {
+    @IBAction func didTapChip8Screen(_ gesture: WKTapGestureRecognizer) {
         guard let keyMapping = activeRomConfiguration?.mapping,
               let chip8KeyCode = keyMapping[.screenTap]?.rawValue else { return }
 
@@ -179,7 +180,7 @@ extension InterfaceController: WKCrownDelegate {
         chip8.handleKeyDown(key: chip8KeyCode)
 
         /*
-         watchOS gestures are discrete/atomic and there appears to
+         tap gestures are discrete/atomic and there appears to
          be no way be notified of imtermediary gesture state such
          as touchDown, touchUp etc. This means we need to simulate
          the touchUp event so that Chip8 doesn't end up thinking a
@@ -197,6 +198,38 @@ extension InterfaceController: WKCrownDelegate {
     @objc private func didEndTap() {
         guard let keyMapping = activeRomConfiguration?.mapping,
               let chip8KeyCode = keyMapping[.screenTap]?.rawValue else { return }
+
+        chip8.handleKeyUp(key: chip8KeyCode)
+    }
+
+    @IBAction func didLongPressChip8Screen(_ gesture: WKLongPressGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            didBeginLongPress()
+            return
+        case .ended:
+            didEndLongPress()
+            return
+        case .failed:
+            didEndLongPress()
+            return
+        default:
+            return
+        }
+    }
+
+    private func didBeginLongPress() {
+        guard let keyMapping = activeRomConfiguration?.mapping,
+              let chip8KeyCode = keyMapping[.screenLongPress]?.rawValue else { return }
+
+        // ensure romPicker is no longer focus and that crown controls game
+        crownSequencer.focus()
+        chip8.handleKeyDown(key: chip8KeyCode)
+    }
+
+    private func didEndLongPress() {
+        guard let keyMapping = activeRomConfiguration?.mapping,
+              let chip8KeyCode = keyMapping[.screenLongPress]?.rawValue else { return }
 
         chip8.handleKeyUp(key: chip8KeyCode)
     }

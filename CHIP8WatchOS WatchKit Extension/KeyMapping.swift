@@ -65,4 +65,11 @@ extension KeyMapping {
         .crownDown : .four,
         .crownUp : .six
     ]
+
+    static let tetris: KeyMapping = [
+        .screenLongPress : .seven,
+        .screenTap : .four,
+        .crownDown : .five,
+        .crownUp : .six
+    ]
 }

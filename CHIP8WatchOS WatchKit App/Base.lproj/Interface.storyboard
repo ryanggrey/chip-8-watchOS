@@ -20,6 +20,11 @@
                                                 <action selector="didTapChip8Screen:" destination="AgC-eL-Hgc" id="SvE-C6-D2r"/>
                                             </connections>
                                         </tapGestureRecognizer>
+                                        <longPressGestureRecognizer id="iqK-Lc-WCb">
+                                            <connections>
+                                                <action selector="didLongPressChip8Screen:" destination="AgC-eL-Hgc" id="rt6-aL-Xme"/>
+                                            </connections>
+                                        </longPressGestureRecognizer>
                                     </gestureRecognizers>
                                 </imageView>
                                 <picker width="1" height="0.25" alignment="center" focusStyle="stack" id="0Ry-5L-az6">

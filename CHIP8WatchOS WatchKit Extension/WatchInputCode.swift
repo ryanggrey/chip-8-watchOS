@@ -11,4 +11,5 @@ enum WatchInputCode {
     case crownUp
     case crownDown
     case screenTap
+    case screenLongPress
 }
