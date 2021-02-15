@@ -72,4 +72,6 @@ extension KeyMapping {
         .crownDown : .five,
         .crownUp : .six
     ]
+
+    static let wipeOff: KeyMapping = breakout
 }

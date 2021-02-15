@@ -32,7 +32,8 @@ class InterfaceController: WKInterfaceController {
         RomConfiguration(romName: RomName.pong, mapping: KeyMapping.pong),
         RomConfiguration(romName: RomName.rocket, mapping: KeyMapping.rocket),
         RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.spaceInvaders),
-        RomConfiguration(romName: RomName.tetris, mapping: KeyMapping.tetris)
+        RomConfiguration(romName: RomName.tetris, mapping: KeyMapping.tetris),
+        RomConfiguration(romName: RomName.wipeOff, mapping: KeyMapping.wipeOff)
     ]
 
     private var chip8ImageSize: CGSize {

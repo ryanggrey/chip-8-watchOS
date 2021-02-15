@@ -20,4 +20,5 @@ struct RomName {
     static let rocket = "Rocket [Joseph Weisbecker, 1978]"
     static let spaceInvaders = "Space Invaders [David Winter]"
     static let tetris = "Tetris [Fran Dachille, 1991]"
+    static let wipeOff = "Wipe Off [Joseph Weisbecker]"
 }
