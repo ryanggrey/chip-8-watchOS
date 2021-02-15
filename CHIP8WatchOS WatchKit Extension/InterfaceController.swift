@@ -21,6 +21,7 @@ class InterfaceController: WKInterfaceController {
     private var activeRomConfiguration: RomConfiguration?
 
     private let romConfigurations = [
+        RomConfiguration(romName: RomName.chip8, mapping: KeyMapping.none),
         RomConfiguration(romName: RomName.airplane, mapping: KeyMapping.airplane),
         RomConfiguration(romName: RomName.astroDodge, mapping: KeyMapping.astroDodge),
         RomConfiguration(romName: RomName.breakout, mapping: KeyMapping.breakout),
@@ -52,7 +53,9 @@ class InterfaceController: WKInterfaceController {
 
     private func setupPicker() {
         romPicker.setItems(self.pickerItems)
-        romPicker.setSelectedItemIndex(self.pickerItems.count - 1)
+        let pickerIndex = 0
+        romPicker.setSelectedItemIndex(pickerIndex)
+        pickerDidSelect(pickerIndex)
     }
 
     private func setupRenderer() {

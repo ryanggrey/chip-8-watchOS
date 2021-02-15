@@ -11,6 +11,7 @@ struct RomName {
     static let airplane = "Airplane"
     static let astroDodge = "Astro Dodge [Revival Studios, 2008]"
     static let breakout = "Breakout (Brix hack) [David Winter, 1997]"
+    static let chip8 = "Chip8 emulator Logo [Garstyciuks]"
     static let filter = "Filter"
     static let landing = "Landing"
     static let lunarLander = "Lunar Lander (Udo Pernisz, 1979)"
