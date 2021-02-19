@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Chip8Emulator
 
 typealias PlatformInputMapping = [WatchInputCode : SemanticInputCode]
 

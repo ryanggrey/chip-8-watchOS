@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Chip8Emulator
 
 struct PlatformInputMappingService {
     static private let mapping: [RomName : PlatformInputMapping] = [
