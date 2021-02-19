@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		166C263425E04A4E0003A294 /* InputMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263325E04A4E0003A294 /* InputMapper.swift */; };
+		166C263925E06D040003A294 /* PlatformInputMappingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263825E06D040003A294 /* PlatformInputMappingService.swift */; };
+		166C263E25E06DCD0003A294 /* SemanticInputMappingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263D25E06DCD0003A294 /* SemanticInputMappingService.swift */; };
+		166C264C25E077F70003A294 /* SemanticInputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C264B25E077F70003A294 /* SemanticInputCode.swift */; };
+		166C265125E079BA0003A294 /* SemanticInputMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C265025E079BA0003A294 /* SemanticInputMapping.swift */; };
+		166C265625E079EE0003A294 /* PlatformInputMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C265525E079EE0003A294 /* PlatformInputMapping.swift */; };
 		16B52BEF25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		16B52BF525D349B9007C67A6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B52BF325D349B9007C67A6 /* Interface.storyboard */; };
 		16B52BF725D349BB007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52BF625D349BB007C67A6 /* Assets.xcassets */; };
@@ -17,9 +23,7 @@
 		16B52C0925D349BD007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52C0825D349BD007C67A6 /* Assets.xcassets */; };
 		16BAB45C25D67526003178F0 /* RomName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB45B25D67525003178F0 /* RomName.swift */; };
 		16BAB47425D6E6ED003178F0 /* Chip8Emulator in Frameworks */ = {isa = PBXBuildFile; productRef = 16BAB47325D6E6ED003178F0 /* Chip8Emulator */; };
-		16BAB4CF25D9DF36003178F0 /* KeyMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4CE25D9DF36003178F0 /* KeyMapping.swift */; };
 		16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */; };
-		16BAB4DE25D9E28A003178F0 /* RomConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4DD25D9E28A003178F0 /* RomConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		166C263325E04A4E0003A294 /* InputMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMapper.swift; sourceTree = "<group>"; };
+		166C263825E06D040003A294 /* PlatformInputMappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformInputMappingService.swift; sourceTree = "<group>"; };
+		166C263D25E06DCD0003A294 /* SemanticInputMappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticInputMappingService.swift; sourceTree = "<group>"; };
+		166C264B25E077F70003A294 /* SemanticInputCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticInputCode.swift; sourceTree = "<group>"; };
+		166C265025E079BA0003A294 /* SemanticInputMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticInputMapping.swift; sourceTree = "<group>"; };
+		166C265525E079EE0003A294 /* PlatformInputMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformInputMapping.swift; sourceTree = "<group>"; };
 		16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHIP8WatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP8WatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BF425D349B9007C67A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -77,9 +87,7 @@
 		16B52C0825D349BD007C67A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16B52C0A25D349BD007C67A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16BAB45B25D67525003178F0 /* RomName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomName.swift; sourceTree = "<group>"; };
-		16BAB4CE25D9DF36003178F0 /* KeyMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyMapping.swift; sourceTree = "<group>"; };
 		16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInputCode.swift; sourceTree = "<group>"; };
-		16BAB4DD25D9E28A003178F0 /* RomConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RomConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +141,13 @@
 				16B52C0825D349BD007C67A6 /* Assets.xcassets */,
 				16B52C0A25D349BD007C67A6 /* Info.plist */,
 				16BAB45B25D67525003178F0 /* RomName.swift */,
-				16BAB4CE25D9DF36003178F0 /* KeyMapping.swift */,
 				16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */,
-				16BAB4DD25D9E28A003178F0 /* RomConfiguration.swift */,
+				166C263325E04A4E0003A294 /* InputMapper.swift */,
+				166C263825E06D040003A294 /* PlatformInputMappingService.swift */,
+				166C263D25E06DCD0003A294 /* SemanticInputMappingService.swift */,
+				166C264B25E077F70003A294 /* SemanticInputCode.swift */,
+				166C265025E079BA0003A294 /* SemanticInputMapping.swift */,
+				166C265525E079EE0003A294 /* PlatformInputMapping.swift */,
 			);
 			path = "CHIP8WatchOS WatchKit Extension";
 			sourceTree = "<group>";
@@ -283,12 +295,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */,
+				166C263E25E06DCD0003A294 /* SemanticInputMappingService.swift in Sources */,
+				166C263925E06D040003A294 /* PlatformInputMappingService.swift in Sources */,
+				166C263425E04A4E0003A294 /* InputMapper.swift in Sources */,
+				166C265125E079BA0003A294 /* SemanticInputMapping.swift in Sources */,
 				16BAB45C25D67526003178F0 /* RomName.swift in Sources */,
+				166C265625E079EE0003A294 /* PlatformInputMapping.swift in Sources */,
+				166C264C25E077F70003A294 /* SemanticInputCode.swift in Sources */,
 				16B52C0325D349BC007C67A6 /* InterfaceController.swift in Sources */,
 				16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */,
-				16BAB4CF25D9DF36003178F0 /* KeyMapping.swift in Sources */,
 				16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */,
-				16BAB4DE25D9E28A003178F0 /* RomConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

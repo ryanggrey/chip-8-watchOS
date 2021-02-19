@@ -10,6 +10,8 @@ import Foundation
 import SpriteKit
 import Chip8Emulator
 
+typealias RomSemanticInputMapping = [RomName : SemanticInputMapping]
+
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var chip8Image: WKInterfaceImage!
     @IBOutlet weak var romPicker: WKInterfacePicker!
@@ -18,24 +20,7 @@ class InterfaceController: WKInterfaceController {
     private let cpuHz: TimeInterval = 1/600
     private var displayTimer: Timer?
     private let displayHz: TimeInterval = 1/30
-    private var activeRomConfiguration: RomConfiguration?
-
-    private let romConfigurations = [
-        RomConfiguration(romName: RomName.chip8, mapping: KeyMapping.none),
-        RomConfiguration(romName: RomName.airplane, mapping: KeyMapping.airplane),
-        RomConfiguration(romName: RomName.astroDodge, mapping: KeyMapping.astroDodge),
-        RomConfiguration(romName: RomName.breakout, mapping: KeyMapping.breakout),
-        RomConfiguration(romName: RomName.filter, mapping: KeyMapping.filter),
-        RomConfiguration(romName: RomName.landing, mapping: KeyMapping.landing),
-        RomConfiguration(romName: RomName.lunarLander, mapping: KeyMapping.lunarLanding),
-        RomConfiguration(romName: RomName.maze, mapping: KeyMapping.none),
-        RomConfiguration(romName: RomName.missile, mapping: KeyMapping.missile),
-        RomConfiguration(romName: RomName.pong, mapping: KeyMapping.pong),
-        RomConfiguration(romName: RomName.rocket, mapping: KeyMapping.rocket),
-        RomConfiguration(romName: RomName.spaceInvaders, mapping: KeyMapping.spaceInvaders),
-        RomConfiguration(romName: RomName.tetris, mapping: KeyMapping.tetris),
-        RomConfiguration(romName: RomName.wipeOff, mapping: KeyMapping.wipeOff)
-    ]
+    private var activeRom: RomName?
 
     private var chip8ImageSize: CGSize {
         let width = contentFrame.size.width
@@ -64,8 +49,8 @@ class InterfaceController: WKInterfaceController {
     }
 
     @IBAction func pickerDidSelect(_ index: Int) {
-        activeRomConfiguration = self.romConfigurations[index]
-        guard let romName = activeRomConfiguration?.romName,
+        activeRom = RomName.allCases[index]
+        guard let romName = activeRom?.rawValue,
               let romData = NSDataAsset(name: romName)?.data else { return }
 
         let rom = [Byte](romData)
@@ -74,7 +59,7 @@ class InterfaceController: WKInterfaceController {
     }
 
     private var pickerItems: [WKPickerItem] {
-        return romConfigurations.map { createPickerItem(with: $0.romName) }
+        return RomName.allCases.map { createPickerItem(with: $0.rawValue) }
     }
 
     private func createPickerItem(with title: String) -> WKPickerItem {
@@ -177,9 +162,16 @@ class InterfaceController: WKInterfaceController {
 
 // Handle User Gestures
 extension InterfaceController: WKCrownDelegate {
+    private func chip8KeyCode(from platformInput: WatchInputCode) -> Int? {
+        guard let romName = activeRom,
+              let chip8KeyCode = InputMapper.map(platformInput: platformInput, romName: romName)?.rawValue
+        else { return nil }
+
+        return chip8KeyCode
+    }
+
     @IBAction func didTapChip8Screen(_ gesture: WKTapGestureRecognizer) {
-        guard let keyMapping = activeRomConfiguration?.mapping,
-              let chip8KeyCode = keyMapping[.screenTap]?.rawValue else { return }
+        guard let chip8KeyCode = chip8KeyCode(from: .screenTap) else { return }
 
         // ensure romPicker is no longer focus and that crown controls game
         crownSequencer.focus()
@@ -203,8 +195,7 @@ extension InterfaceController: WKCrownDelegate {
     }
 
     @objc private func didEndTap() {
-        guard let keyMapping = activeRomConfiguration?.mapping,
-              let chip8KeyCode = keyMapping[.screenTap]?.rawValue else { return }
+        guard let chip8KeyCode = chip8KeyCode(from: .screenTap) else { return }
 
         chip8.handleKeyUp(key: chip8KeyCode)
     }
@@ -226,8 +217,7 @@ extension InterfaceController: WKCrownDelegate {
     }
 
     private func didBeginLongPress() {
-        guard let keyMapping = activeRomConfiguration?.mapping,
-              let chip8KeyCode = keyMapping[.screenLongPress]?.rawValue else { return }
+        guard let chip8KeyCode = chip8KeyCode(from: .screenLongPress) else { return }
 
         // ensure romPicker is no longer focus and that crown controls game
         crownSequencer.focus()
@@ -235,16 +225,15 @@ extension InterfaceController: WKCrownDelegate {
     }
 
     private func didEndLongPress() {
-        guard let keyMapping = activeRomConfiguration?.mapping,
-              let chip8KeyCode = keyMapping[.screenLongPress]?.rawValue else { return }
+        guard let chip8KeyCode = chip8KeyCode(from: .screenLongPress) else { return }
 
         chip8.handleKeyUp(key: chip8KeyCode)
     }
 
     func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
-        guard let keyMapping = activeRomConfiguration?.mapping,
-              let chip8CodeForCrownUp = keyMapping[.crownUp]?.rawValue,
-              let chip8CodeForCrownDown = keyMapping[.crownDown]?.rawValue else { return }
+        guard let chip8CodeForCrownUp = chip8KeyCode(from: .crownUp),
+              let chip8CodeForCrownDown = chip8KeyCode(from: .crownDown)
+        else { return }
 
         /*
          rotationalDelta should give us - sign for down direction
@@ -270,9 +259,9 @@ extension InterfaceController: WKCrownDelegate {
     }
 
     func crownDidBecomeIdle(_ crownSequencer: WKCrownSequencer?) {
-        guard let keyMapping = activeRomConfiguration?.mapping,
-              let chip8CodeForCrownUp = keyMapping[.crownUp]?.rawValue,
-              let chip8CodeForCrownDown = keyMapping[.crownDown]?.rawValue else { return }
+        guard let chip8CodeForCrownUp = chip8KeyCode(from: .crownUp),
+              let chip8CodeForCrownDown = chip8KeyCode(from: .crownDown)
+        else { return }
 
         chip8.handleKeyUp(key: chip8CodeForCrownUp)
         chip8.handleKeyUp(key: chip8CodeForCrownDown)

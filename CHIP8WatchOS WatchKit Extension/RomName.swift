@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct RomName {
-    static let airplane = "Airplane"
-    static let astroDodge = "Astro Dodge [Revival Studios, 2008]"
-    static let breakout = "Breakout (Brix hack) [David Winter, 1997]"
-    static let chip8 = "Chip8 emulator Logo [Garstyciuks]"
-    static let filter = "Filter"
-    static let landing = "Landing"
-    static let lunarLander = "Lunar Lander (Udo Pernisz, 1979)"
-    static let maze = "Maze [David Winter, 199x]"
-    static let missile = "Missile [David Winter]"
-    static let pong = "Pong (1 player)"
-    static let rocket = "Rocket [Joseph Weisbecker, 1978]"
-    static let spaceInvaders = "Space Invaders [David Winter]"
-    static let tetris = "Tetris [Fran Dachille, 1991]"
-    static let wipeOff = "Wipe Off [Joseph Weisbecker]"
+enum RomName: String, CaseIterable {
+    case chip8 = "Chip8 emulator Logo [Garstyciuks]"
+    case airplane = "Airplane"
+    case astroDodge = "Astro Dodge [Revival Studios, 2008]"
+    case breakout = "Breakout (Brix hack) [David Winter, 1997]"
+    case filter = "Filter"
+    case landing = "Landing"
+    case lunarLander = "Lunar Lander (Udo Pernisz, 1979)"
+    case maze = "Maze [David Winter, 199x]"
+    case missile = "Missile [David Winter]"
+    case pong = "Pong (1 player)"
+    case rocket = "Rocket [Joseph Weisbecker, 1978]"
+    case spaceInvaders = "Space Invaders [David Winter]"
+    case tetris = "Tetris [Fran Dachille, 1991]"
+    case wipeOff = "Wipe Off [Joseph Weisbecker]"
 }
