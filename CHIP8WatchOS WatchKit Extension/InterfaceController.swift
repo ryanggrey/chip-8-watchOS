@@ -10,8 +10,6 @@ import Foundation
 import SpriteKit
 import Chip8Emulator
 
-typealias RomSemanticInputMapping = [RomName : SemanticInputMapping]
-
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var chip8Image: WKInterfaceImage!
     @IBOutlet weak var romPicker: WKInterfacePicker!
@@ -21,6 +19,7 @@ class InterfaceController: WKInterfaceController {
     private var displayTimer: Timer?
     private let displayHz: TimeInterval = 1/30
     private var activeRom: RomName?
+    private let inputMapper = InputMapper(platformInputMappingService: WatchInputMappingService())
 
     private var chip8ImageSize: CGSize {
         let width = contentFrame.size.width
@@ -164,7 +163,7 @@ class InterfaceController: WKInterfaceController {
 extension InterfaceController: WKCrownDelegate {
     private func chip8KeyCode(from platformInput: WatchInputCode) -> Int? {
         guard let romName = activeRom,
-              let chip8KeyCode = InputMapper.map(platformInput: platformInput, romName: romName)?.rawValue
+              let chip8KeyCode = inputMapper.map(platformInput: platformInput, romName: romName)?.rawValue
         else { return nil }
 
         return chip8KeyCode

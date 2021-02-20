@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		166C263425E04A4E0003A294 /* InputMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263325E04A4E0003A294 /* InputMapper.swift */; };
-		166C263925E06D040003A294 /* PlatformInputMappingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263825E06D040003A294 /* PlatformInputMappingService.swift */; };
-		166C265625E079EE0003A294 /* PlatformInputMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C265525E079EE0003A294 /* PlatformInputMapping.swift */; };
+		166C263925E06D040003A294 /* WatchInputMappingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263825E06D040003A294 /* WatchInputMappingService.swift */; };
 		16B52BEF25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		16B52BF525D349B9007C67A6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B52BF325D349B9007C67A6 /* Interface.storyboard */; };
 		16B52BF725D349BB007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52BF625D349BB007C67A6 /* Assets.xcassets */; };
@@ -65,9 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		166C263325E04A4E0003A294 /* InputMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMapper.swift; sourceTree = "<group>"; };
-		166C263825E06D040003A294 /* PlatformInputMappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformInputMappingService.swift; sourceTree = "<group>"; };
-		166C265525E079EE0003A294 /* PlatformInputMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformInputMapping.swift; sourceTree = "<group>"; };
+		166C263825E06D040003A294 /* WatchInputMappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInputMappingService.swift; sourceTree = "<group>"; };
 		16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHIP8WatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP8WatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BF425D349B9007C67A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -133,9 +129,7 @@
 				16B52C0825D349BD007C67A6 /* Assets.xcassets */,
 				16B52C0A25D349BD007C67A6 /* Info.plist */,
 				16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */,
-				166C263325E04A4E0003A294 /* InputMapper.swift */,
-				166C263825E06D040003A294 /* PlatformInputMappingService.swift */,
-				166C265525E079EE0003A294 /* PlatformInputMapping.swift */,
+				166C263825E06D040003A294 /* WatchInputMappingService.swift */,
 			);
 			path = "CHIP8WatchOS WatchKit Extension";
 			sourceTree = "<group>";
@@ -283,9 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */,
-				166C263925E06D040003A294 /* PlatformInputMappingService.swift in Sources */,
-				166C263425E04A4E0003A294 /* InputMapper.swift in Sources */,
-				166C265625E079EE0003A294 /* PlatformInputMapping.swift in Sources */,
+				166C263925E06D040003A294 /* WatchInputMappingService.swift in Sources */,
 				16B52C0325D349BC007C67A6 /* InterfaceController.swift in Sources */,
 				16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */,
 				16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */,
