@@ -19,7 +19,18 @@ class InterfaceController: WKInterfaceController {
     private var displayTimer: Timer?
     private let displayHz: TimeInterval = 1/30
     private var activeRom: RomName?
-    private let inputMapper = InputMapper(platformInputMappingService: WatchInputMappingService())
+
+    private lazy var platformInputMappingService: WatchInputMappingService = {
+        return WatchInputMappingService()
+    }()
+
+    private lazy var inputMapper: InputMapper<WatchInputMappingService> = {
+        return InputMapper(platformInputMappingService: platformInputMappingService)
+    }()
+
+    private lazy var supportedRomService: PlatformSupportedRomService = {
+        return PlatformSupportedRomService(inputMappingService: platformInputMappingService)
+    }()
 
     private var chip8ImageSize: CGSize {
         let width = contentFrame.size.width
@@ -48,7 +59,7 @@ class InterfaceController: WKInterfaceController {
     }
 
     @IBAction func pickerDidSelect(_ index: Int) {
-        activeRom = RomName.allCases[index]
+        activeRom = supportedRomService.supportedRoms[index]
         guard let romName = activeRom?.rawValue,
               let romData = NSDataAsset(name: romName)?.data else { return }
 
@@ -58,7 +69,7 @@ class InterfaceController: WKInterfaceController {
     }
 
     private var pickerItems: [WKPickerItem] {
-        return RomName.allCases.map { createPickerItem(with: $0.rawValue) }
+        return supportedRomService.supportedRoms.map { createPickerItem(with: $0.rawValue) }
     }
 
     private func createPickerItem(with title: String) -> WKPickerItem {

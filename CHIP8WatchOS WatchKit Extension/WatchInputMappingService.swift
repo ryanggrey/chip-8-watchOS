@@ -8,80 +8,72 @@
 import Foundation
 import Chip8Emulator
 
-struct WatchInputMappingService: PlatformInputMappingService {
+typealias PlatformMapping = [WatchInputCode : SemanticInputCode]
+
+struct WatchInputMappingService {
+    private let mapping: [RomName : PlatformMapping] = [
+        .chip8 : [:],
+        .airplane : [
+            .screenTap : .primaryAction
+        ],
+        .astroDodge: [
+            .screenTap : .primaryAction,
+            .crownDown : .left,
+            .crownUp : .right
+        ],
+        .breakout: [
+            .crownDown : .left,
+            .crownUp : .right
+        ],
+        .filter : [
+            .crownDown : .left,
+            .crownUp : .right
+        ],
+        .landing : [
+            .screenTap : .primaryAction
+        ],
+        .lunarLander : [
+            .screenTap : .primaryAction,
+            .crownDown : .left,
+            .crownUp : .right
+        ],
+        .maze : [:],
+        .missile : [
+            .screenTap : .primaryAction
+        ],
+        .pong : [
+            .crownDown : .down,
+            .crownUp : .up
+        ],
+        .rocket : [
+            .screenTap : .primaryAction
+        ],
+        .spaceInvaders : [
+            .screenTap : .primaryAction,
+            .crownDown : .left,
+            .crownUp : .right
+        ],
+        .tetris : [
+            .screenLongPress : .secondaryAction,
+            .screenTap : .primaryAction,
+            .crownDown : .left,
+            .crownUp : .right
+        ],
+        .wipeOff : [
+            .crownDown : .left,
+            .crownUp : .right
+        ]
+    ]
+
+    func platformMapping(for romName: RomName) -> PlatformMapping? {
+        return mapping[romName]
+    }
+}
+
+extension WatchInputMappingService: PlatformInputMappingService {
     typealias PlatformInputCode = WatchInputCode
 
-    func mapping(for romName: RomName) -> [WatchInputCode : SemanticInputCode] {
-        switch romName {
-        case .chip8:
-            return [:]
-        case .airplane:
-            return [
-                .screenTap : .primaryAction
-            ]
-        case .astroDodge:
-            return [
-                .screenTap : .primaryAction,
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        case .breakout:
-            return [
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        case .filter :
-            return [
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        case .landing :
-            return [
-                .screenTap : .primaryAction
-            ]
-        case .lunarLander :
-            return [
-                .screenTap : .primaryAction,
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        case .maze :
-            return [:]
-        case .missile :
-            return [
-                .screenTap : .primaryAction
-            ]
-        case .pong :
-            return [
-                .crownDown : .down,
-                .crownUp : .up
-            ]
-        case .rocket :
-            return [
-                .screenTap : .primaryAction
-            ]
-        case .spaceInvaders :
-            return [
-                .screenTap : .primaryAction,
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        case .tetris :
-            return [
-                .screenLongPress : .secondaryAction,
-                .screenTap : .primaryAction,
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        case .wipeOff :
-            return [
-                .crownDown : .left,
-                .crownUp : .right
-            ]
-        }
-    }
-
     func semanticInputCode(from romName: RomName, from platformInputCode: WatchInputCode) -> SemanticInputCode? {
-        return mapping(for: romName)[platformInputCode]
+        return platformMapping(for: romName)?[platformInputCode]
     }
 }
