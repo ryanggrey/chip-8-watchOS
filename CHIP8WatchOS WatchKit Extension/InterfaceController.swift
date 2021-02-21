@@ -61,7 +61,7 @@ class InterfaceController: WKInterfaceController {
     @IBAction func pickerDidSelect(_ index: Int) {
         activeRom = supportedRomService.supportedRoms[index]
         guard let romName = activeRom?.rawValue,
-              let romData = NSDataAsset(name: romName)?.data else { return }
+              let romData = NSDataAsset(name: romName, bundle: Bundle.emulator)?.data else { return }
 
         let rom = [Byte](romData)
         let ram = RomLoader.loadRam(from: rom)
