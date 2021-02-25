@@ -585,8 +585,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "file:///Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 0.0.10;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

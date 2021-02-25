@@ -5,9 +5,9 @@
         "package": "Chip8Emulator",
         "repositoryURL": "/Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator",
         "state": {
-          "branch": "main",
-          "revision": "1ec635176fac1e5860dda8b36c8b01bc8f2bf90e",
-          "version": null
+          "branch": null,
+          "revision": "2d847e038ba2060f9d070ea9223844ecc9131803",
+          "version": "0.0.10"
         }
       }
     ]
