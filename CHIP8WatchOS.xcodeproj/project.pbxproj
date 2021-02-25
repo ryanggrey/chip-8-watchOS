@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		166C263925E06D040003A294 /* WatchInputMappingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C263825E06D040003A294 /* WatchInputMappingService.swift */; };
 		166C269B25E1C1E40003A294 /* PlatformSupportedRomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C269A25E1C1E40003A294 /* PlatformSupportedRomService.swift */; };
-		166DA36325E523F700AEE982 /* Chip8Emulator in Frameworks */ = {isa = PBXBuildFile; productRef = 166DA36225E523F700AEE982 /* Chip8Emulator */; };
 		16B52BEF25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		16B52BF525D349B9007C67A6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16B52BF325D349B9007C67A6 /* Interface.storyboard */; };
 		16B52BF725D349BB007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52BF625D349BB007C67A6 /* Assets.xcassets */; };
@@ -18,6 +17,7 @@
 		16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C0425D349BC007C67A6 /* ExtensionDelegate.swift */; };
 		16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C0625D349BC007C67A6 /* ComplicationController.swift */; };
 		16B52C0925D349BD007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52C0825D349BD007C67A6 /* Assets.xcassets */; };
+		16BAB47425D6E6ED003178F0 /* Chip8Emulator in Frameworks */ = {isa = PBXBuildFile; productRef = 16BAB47325D6E6ED003178F0 /* Chip8Emulator */; };
 		16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,6 @@
 /* Begin PBXFileReference section */
 		166C263825E06D040003A294 /* WatchInputMappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInputMappingService.swift; sourceTree = "<group>"; };
 		166C269A25E1C1E40003A294 /* PlatformSupportedRomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSupportedRomService.swift; sourceTree = "<group>"; };
-		166DA35B25E523AC00AEE982 /* Chip8Emulator */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Chip8Emulator; path = ../../Chip8Emulator/Chip8Emulator; sourceTree = "<group>"; };
 		16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHIP8WatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP8WatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BF425D349B9007C67A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -86,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				166DA36325E523F700AEE982 /* Chip8Emulator in Frameworks */,
+				16BAB47425D6E6ED003178F0 /* Chip8Emulator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +95,6 @@
 		16B52BE325D349B9007C67A6 = {
 			isa = PBXGroup;
 			children = (
-				166DA35B25E523AC00AEE982 /* Chip8Emulator */,
 				16B52BF225D349B9007C67A6 /* CHIP8WatchOS WatchKit App */,
 				16B52C0125D349BC007C67A6 /* CHIP8WatchOS WatchKit Extension */,
 				16B52BEB25D349B9007C67A6 /* Products */,
@@ -163,6 +161,7 @@
 			);
 			name = CHIP8WatchOS;
 			packageProductDependencies = (
+				16BAB46B25D6E4FB003178F0 /* Chip8Emulator */,
 			);
 			productName = CHIP8WatchOS;
 			productReference = 16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */;
@@ -199,7 +198,7 @@
 			);
 			name = "CHIP8WatchOS WatchKit Extension";
 			packageProductDependencies = (
-				166DA36225E523F700AEE982 /* Chip8Emulator */,
+				16BAB47325D6E6ED003178F0 /* Chip8Emulator */,
 			);
 			productName = "CHIP8WatchOS WatchKit Extension";
 			productReference = 16B52BFD25D349BC007C67A6 /* CHIP8WatchOS WatchKit Extension.appex */;
@@ -235,6 +234,7 @@
 			);
 			mainGroup = 16B52BE325D349B9007C67A6;
 			packageReferences = (
+				16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */,
 			);
 			productRefGroup = 16B52BEB25D349B9007C67A6 /* Products */;
 			projectDirPath = "";
@@ -580,9 +580,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		166DA36225E523F700AEE982 /* Chip8Emulator */ = {
+		16BAB46B25D6E4FB003178F0 /* Chip8Emulator */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
+			productName = Chip8Emulator;
+		};
+		16BAB47325D6E6ED003178F0 /* Chip8Emulator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
 			productName = Chip8Emulator;
 		};
 /* End XCSwiftPackageProductDependency section */
