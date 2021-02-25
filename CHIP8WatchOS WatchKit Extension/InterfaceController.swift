@@ -19,6 +19,7 @@ class InterfaceController: WKInterfaceController {
     private var displayTimer: Timer?
     private let displayHz: TimeInterval = 1/30
     private var activeRom: RomName?
+    private let beepPlayer = BeepPlayer()
 
     private lazy var platformInputMappingService: WatchInputMappingService = {
         return WatchInputMappingService()
@@ -101,8 +102,8 @@ class InterfaceController: WKInterfaceController {
     @objc private func cpuTimerFired() {
         chip8.cycle()
         if chip8.shouldPlaySound {
-            // TODO: sounds
-            WKInterfaceDevice.current().play(.failure)
+            beepPlayer.play()
+            WKInterfaceDevice.current().play(.click)
         }
     }
 
