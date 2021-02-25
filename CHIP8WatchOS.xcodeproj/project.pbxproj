@@ -159,7 +159,7 @@
 			);
 			name = CHIP8WatchOS;
 			packageProductDependencies = (
-				166DA3C525E7A4E100AEE982 /* Chip8Emulator */,
+				166DA3EA25E7BC1800AEE982 /* Chip8Emulator */,
 			);
 			productName = CHIP8WatchOS;
 			productReference = 16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */;
@@ -231,7 +231,7 @@
 			);
 			mainGroup = 16B52BE325D349B9007C67A6;
 			packageReferences = (
-				166DA3C425E7A4E100AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */,
+				166DA3E925E7BC1800AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */,
 			);
 			productRefGroup = 16B52BEB25D349B9007C67A6 /* Products */;
 			projectDirPath = "";
@@ -578,7 +578,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		166DA3C425E7A4E100AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */ = {
+		166DA3E925E7BC1800AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ryanggrey/Chip8EmulatorPackage";
 			requirement = {
@@ -589,9 +589,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		166DA3C525E7A4E100AEE982 /* Chip8Emulator */ = {
+		166DA3EA25E7BC1800AEE982 /* Chip8Emulator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 166DA3C425E7A4E100AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */;
+			package = 166DA3E925E7BC1800AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */;
 			productName = Chip8Emulator;
 		};
 /* End XCSwiftPackageProductDependency section */
