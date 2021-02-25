@@ -17,7 +17,6 @@
 		16B52C0525D349BC007C67A6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C0425D349BC007C67A6 /* ExtensionDelegate.swift */; };
 		16B52C0725D349BC007C67A6 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B52C0625D349BC007C67A6 /* ComplicationController.swift */; };
 		16B52C0925D349BD007C67A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B52C0825D349BD007C67A6 /* Assets.xcassets */; };
-		16BAB47425D6E6ED003178F0 /* Chip8Emulator in Frameworks */ = {isa = PBXBuildFile; productRef = 16BAB47325D6E6ED003178F0 /* Chip8Emulator */; };
 		16BAB4D425D9DF82003178F0 /* WatchInputCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BAB4D325D9DF82003178F0 /* WatchInputCode.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16BAB47425D6E6ED003178F0 /* Chip8Emulator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +159,7 @@
 			);
 			name = CHIP8WatchOS;
 			packageProductDependencies = (
-				16BAB46B25D6E4FB003178F0 /* Chip8Emulator */,
+				166DA3C525E7A4E100AEE982 /* Chip8Emulator */,
 			);
 			productName = CHIP8WatchOS;
 			productReference = 16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */;
@@ -198,7 +196,6 @@
 			);
 			name = "CHIP8WatchOS WatchKit Extension";
 			packageProductDependencies = (
-				16BAB47325D6E6ED003178F0 /* Chip8Emulator */,
 			);
 			productName = "CHIP8WatchOS WatchKit Extension";
 			productReference = 16B52BFD25D349BC007C67A6 /* CHIP8WatchOS WatchKit Extension.appex */;
@@ -234,7 +231,7 @@
 			);
 			mainGroup = 16B52BE325D349B9007C67A6;
 			packageReferences = (
-				16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */,
+				166DA3C425E7A4E100AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */,
 			);
 			productRefGroup = 16B52BEB25D349B9007C67A6 /* Products */;
 			projectDirPath = "";
@@ -581,9 +578,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */ = {
+		166DA3C425E7A4E100AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/rgrey/dev/personal/Chip8Emulator/Chip8Emulator";
+			repositoryURL = "https://github.com/ryanggrey/Chip8EmulatorPackage";
 			requirement = {
 				kind = exactVersion;
 				version = 0.0.10;
@@ -592,14 +589,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		16BAB46B25D6E4FB003178F0 /* Chip8Emulator */ = {
+		166DA3C525E7A4E100AEE982 /* Chip8Emulator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
-			productName = Chip8Emulator;
-		};
-		16BAB47325D6E6ED003178F0 /* Chip8Emulator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 16BAB46A25D6E4FA003178F0 /* XCRemoteSwiftPackageReference "Chip8Emulator" */;
+			package = 166DA3C425E7A4E100AEE982 /* XCRemoteSwiftPackageReference "Chip8EmulatorPackage" */;
 			productName = Chip8Emulator;
 		};
 /* End XCSwiftPackageProductDependency section */
