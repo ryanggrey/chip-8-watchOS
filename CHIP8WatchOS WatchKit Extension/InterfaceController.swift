@@ -13,11 +13,7 @@ import Chip8Emulator
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var chip8Image: WKInterfaceImage!
     @IBOutlet weak var romPicker: WKInterfacePicker!
-    private var chip8: Chip8!
-    private var cpuTimer: Timer?
-    private let cpuHz: TimeInterval = 1/600
-    private var displayTimer: Timer?
-    private let displayHz: TimeInterval = 1/30
+    private var chip8Engine = Chip8Engine()
     private var activeRom: RomName?
     private let beepPlayer = BeepPlayer()
 
@@ -41,10 +37,24 @@ class InterfaceController: WKInterfaceController {
 
     override func didAppear() {
         super.didAppear()
-        crownSequencer.delegate = self
-        crownSequencer.focus()
+        setupChip8Engine()
+        setupControls()
         setupRenderer()
         setupPicker()
+    }
+
+    private func setupChip8Engine() {
+        chip8Engine.delegate = self
+    }
+
+    private func setupControls() {
+        crownSequencer.delegate = self
+        crownSequencer.focus()
+    }
+
+    private func setupRenderer() {
+        chip8Image.setWidth(chip8ImageSize.width)
+        chip8Image.setHeight(chip8ImageSize.height)
     }
 
     private func setupPicker() {
@@ -54,18 +64,11 @@ class InterfaceController: WKInterfaceController {
         pickerDidSelect(pickerIndex)
     }
 
-    private func setupRenderer() {
-        chip8Image.setWidth(chip8ImageSize.width)
-        chip8Image.setHeight(chip8ImageSize.height)
-    }
-
     @IBAction func pickerDidSelect(_ index: Int) {
         activeRom = supportedRomService.supportedRoms[index]
-        guard let romName = activeRom?.rawValue,
-              let romData = NSDataAsset(name: romName, bundle: Bundle.emulator)?.data else { return }
+        guard let activeRom = activeRom else { return }
 
-        let rom = [Byte](romData)
-        let ram = RomLoader.loadRam(from: rom)
+        let ram = RomLoader.loadRam(from: activeRom)
         runEmulator(with: ram)
     }
 
@@ -81,62 +84,15 @@ class InterfaceController: WKInterfaceController {
 
     private func runEmulator(with rom: [Byte]) {
         setupChip8(with: rom)
-        startCpu()
-        startRendering()
-    }
-
-    private func startCpu() {
-        cpuTimer?.invalidate()
-        cpuTimer = nil
-
-        cpuTimer = Timer.scheduledTimer(
-            timeInterval: cpuHz,
-            target: self,
-            selector: #selector(self.cpuTimerFired),
-            userInfo: nil,
-            repeats: true
-        )
-        RunLoop.current.add(cpuTimer!, forMode: .common)
-    }
-
-    @objc private func cpuTimerFired() {
-        chip8.cycle()
-        if chip8.shouldPlaySound {
-            beepPlayer.play()
-            WKInterfaceDevice.current().play(.click)
-        }
-    }
-
-    private func startRendering() {
-        displayTimer?.invalidate()
-        displayTimer = nil
-
-        displayTimer = Timer.scheduledTimer(
-            timeInterval: displayHz,
-            target: self,
-            selector: #selector(self.displayTimerFired),
-            userInfo: nil,
-            repeats: true
-        )
-    }
-
-    @objc private func displayTimerFired() {
-        if chip8.needsRedraw {
-            render(screen: chip8.screen)
-            chip8.needsRedraw = false
-        }
     }
 
     private func setupChip8(with rom: [Byte]) {
-        var chipState = ChipState()
-        chipState.ram = rom
-        self.chip8 = Chip8(
-            state: chipState,
-            cpuHz: cpuHz
-        )
+        chip8Engine.start(with: rom)
     }
+}
 
-    private func render(screen: Chip8Screen) {
+extension InterfaceController: Chip8EngineDelegate {
+    func render(screen: Chip8Screen) {
         let path = PathFactory.from(
             screen: screen,
             containerSize: chip8ImageSize,
@@ -169,13 +125,18 @@ class InterfaceController: WKInterfaceController {
 
         return context
     }
+
+    func beep() {
+        beepPlayer.play()
+        WKInterfaceDevice.current().play(.click)
+    }
 }
 
 // Handle User Gestures
 extension InterfaceController: WKCrownDelegate {
-    private func chip8KeyCode(from platformInput: WatchInputCode) -> Int? {
+    private func chip8KeyCode(from platformInput: WatchInputCode) -> Chip8InputCode? {
         guard let romName = activeRom,
-              let chip8KeyCode = inputMapper.map(platformInput: platformInput, romName: romName)?.rawValue
+              let chip8KeyCode = inputMapper.map(platformInput: platformInput, romName: romName)
         else { return nil }
 
         return chip8KeyCode
@@ -187,7 +148,7 @@ extension InterfaceController: WKCrownDelegate {
         // ensure romPicker is no longer focus and that crown controls game
         crownSequencer.focus()
 
-        chip8.handleKeyDown(key: chip8KeyCode)
+        chip8Engine.handleKeyDown(key: chip8KeyCode)
 
         /*
          tap gestures are discrete/atomic and there appears to
@@ -208,7 +169,7 @@ extension InterfaceController: WKCrownDelegate {
     @objc private func didEndTap() {
         guard let chip8KeyCode = chip8KeyCode(from: .screenTap) else { return }
 
-        chip8.handleKeyUp(key: chip8KeyCode)
+        chip8Engine.handleKeyUp(key: chip8KeyCode)
     }
 
     @IBAction func didLongPressChip8Screen(_ gesture: WKLongPressGestureRecognizer) {
@@ -232,13 +193,13 @@ extension InterfaceController: WKCrownDelegate {
 
         // ensure romPicker is no longer focus and that crown controls game
         crownSequencer.focus()
-        chip8.handleKeyDown(key: chip8KeyCode)
+        chip8Engine.handleKeyDown(key: chip8KeyCode)
     }
 
     private func didEndLongPress() {
         guard let chip8KeyCode = chip8KeyCode(from: .screenLongPress) else { return }
 
-        chip8.handleKeyUp(key: chip8KeyCode)
+        chip8Engine.handleKeyUp(key: chip8KeyCode)
     }
 
     func crownDidRotate(_ crownSequencer: WKCrownSequencer?, rotationalDelta: Double) {
@@ -256,16 +217,16 @@ extension InterfaceController: WKCrownDelegate {
 
         if rotationalDelta < 0 {
             // ensure previous direction released
-            chip8.handleKeyUp(key: chip8CodeForCrownUp)
+            chip8Engine.handleKeyUp(key: chip8CodeForCrownUp)
 
             // activate new direction
-            chip8.handleKeyDown(key: chip8CodeForCrownDown)
+            chip8Engine.handleKeyDown(key: chip8CodeForCrownDown)
         } else if rotationalDelta > 0 {
             // ensure previous direction released
-            chip8.handleKeyUp(key: chip8CodeForCrownDown)
+            chip8Engine.handleKeyUp(key: chip8CodeForCrownDown)
 
             // activate new direction
-            chip8.handleKeyDown(key: chip8CodeForCrownUp)
+            chip8Engine.handleKeyDown(key: chip8CodeForCrownUp)
         }
     }
 
@@ -274,7 +235,7 @@ extension InterfaceController: WKCrownDelegate {
               let chip8CodeForCrownDown = chip8KeyCode(from: .crownDown)
         else { return }
 
-        chip8.handleKeyUp(key: chip8CodeForCrownUp)
-        chip8.handleKeyUp(key: chip8CodeForCrownDown)
+        chip8Engine.handleKeyUp(key: chip8CodeForCrownUp)
+        chip8Engine.handleKeyUp(key: chip8CodeForCrownDown)
     }
 }
