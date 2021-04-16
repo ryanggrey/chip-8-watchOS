@@ -66,7 +66,7 @@
 /* Begin PBXFileReference section */
 		166C263825E06D040003A294 /* WatchInputMappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInputMappingService.swift; sourceTree = "<group>"; };
 		166C269A25E1C1E40003A294 /* PlatformSupportedRomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSupportedRomService.swift; sourceTree = "<group>"; };
-		16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHIP8WatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		16B52BEA25D349B9007C67A6 /* CHIP-8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP-8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP8WatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B52BF425D349B9007C67A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		16B52BF625D349BB007C67A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		16B52BEB25D349B9007C67A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */,
+				16B52BEA25D349B9007C67A6 /* CHIP-8.app */,
 				16B52BEE25D349B9007C67A6 /* CHIP8WatchOS WatchKit App.app */,
 				16B52BFD25D349BC007C67A6 /* CHIP8WatchOS WatchKit Extension.appex */,
 			);
@@ -164,7 +164,7 @@
 				166DA4D925EA8DF700AEE982 /* Chip8Emulator */,
 			);
 			productName = CHIP8WatchOS;
-			productReference = 16B52BEA25D349B9007C67A6 /* CHIP8WatchOS.app */;
+			productReference = 16B52BEA25D349B9007C67A6 /* CHIP-8.app */;
 			productType = "com.apple.product-type.application.watchapp2-container";
 		};
 		16B52BED25D349B9007C67A6 /* CHIP8WatchOS WatchKit App */ = {
@@ -521,7 +521,7 @@
 				DEVELOPMENT_TEAM = B772YKJZX7;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rgrey.CHIP8WatchOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CHIP-8";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -534,7 +534,7 @@
 				DEVELOPMENT_TEAM = B772YKJZX7;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rgrey.CHIP8WatchOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CHIP-8";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
